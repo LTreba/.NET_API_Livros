@@ -10,12 +10,8 @@ public class Livro
     public DateOnly DataPublicacao { get; set; }
     public GeneroLivro? Genero { get; set; }
     public decimal? Preco { get; set; }
-
-    // Chave estrangeira
     public Guid AutorId { get; set; }
     public Autor Autor { get; set; } = null!;
-
-    // Auditoria
     public DateTime DataCadastro { get; set; }
     public DateTime? DataUltimaAtualizacao { get; set; }
     public string? UsuarioUltimaAtualizacao { get; set; }
