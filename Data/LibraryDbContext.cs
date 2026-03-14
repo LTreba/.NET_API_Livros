@@ -19,6 +19,9 @@ public class LibraryDbContext : DbContext
         {
             entity.HasKey(a => a.Id);
 
+            entity.Property(a => a.Id)
+                .ValueGeneratedOnAdd();
+
             entity.Property(a => a.Nome)
                 .IsRequired()
                 .HasMaxLength(100);
@@ -37,6 +40,9 @@ public class LibraryDbContext : DbContext
         modelBuilder.Entity<Livro>(entity =>
         {
             entity.HasKey(l => l.Id);
+
+            entity.Property(l => l.Id)
+                .ValueGeneratedOnAdd();
 
             entity.Property(l => l.ISBN)
                 .IsRequired()
