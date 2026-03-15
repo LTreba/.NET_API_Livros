@@ -1,9 +1,12 @@
 using LibraryApi.Data;
+using LibraryApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IAutorRepository, AutorRepository>();
 
 builder.Services.AddDbContext<LibraryDbContext>(options =>
 {
