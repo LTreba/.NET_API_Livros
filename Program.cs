@@ -4,7 +4,24 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState
+                .Where(e => e.Value?.Errors.Count > 0)
+                .Select(e => new { field = e.Key, error = e.Value!.Errors.First().ErrorMessage })
+                .ToList();
+
+            return new UnprocessableEntityObjectResult(new
+            {
+                status = 422,
+                message = "Erro de Validação",
+                errors
+            });
+        };
+    });
 
 builder.Services.AddScoped<IAutorRepository, AutorRepository>();
 
