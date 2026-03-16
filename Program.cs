@@ -1,6 +1,7 @@
 using LibraryApi.Data;
 using LibraryApi.Repositories;
 using LibraryApi.Services;
+using LibraryApi.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,8 @@ builder.Services.AddControllers()
 
 builder.Services.AddScoped<IAutorRepository, AutorRepository>();
 builder.Services.AddScoped<IAutorService, AutorService>();
+builder.Services.AddScoped<ILivroRepository, LivroRepository>();
+builder.Services.AddScoped<ILivroService, LivroService>();
 
 builder.Services.AddDbContext<LibraryDbContext>(options =>
 {
